@@ -53,37 +53,43 @@ def textDisplay(Font_Size,Text,Colour,x,y):
 #---------------------------------------------------------------------------------
 
 
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#Button class
+"""
+Creates a class to make buttons quickly
+"""
 class pgButton:
 
     def __init__(self,buttonX,buttonY,buttonWidth,buttonHeight,buttonColour,buttonHoverColour,buttonTextSize,buttonText,buttonTextColour,command):
 
-        self.buttonWidth = buttonWidth
-        self.buttonHeight = buttonHeight
+        self.Width = buttonWidth
+        self.Height = buttonHeight
 
-        self.buttonX = buttonX - self.buttonWidth//2
-        self.buttonY = buttonY - self.buttonHeight//2
+        self.X = buttonX - self.Width//2
+        self.Y = buttonY - self.Height//2
         
-        self.buttonColour = buttonColour
-        self.buttonTextSize = buttonTextSize
-        self.buttonHoverColour = buttonHoverColour
+        self.Colour = buttonColour
+        self.TextSize = buttonTextSize
+        self.HoverColour = buttonHoverColour
 
-        self.buttonText = buttonText
-        self.buttonTextX = (self.buttonX + (self.buttonWidth//2) - (len(self.buttonText)//2.6) * self.buttonTextSize)
-        self.buttonTextY = (self.buttonY + self.buttonHeight//2 - (self.buttonTextSize // 2)) 
-        self.buttonTextColour = buttonTextColour
+        self.Text = buttonText
+        self.TextX = (self.X + (self.Width//2) - (pygame.font.Font(None,self.TextSize).size(self.Text)[0]//1.45))
+        self.TextY = (self.Y + self.Height//2 - (pygame.font.Font(None,self.TextSize).size(self.Text)[1]//2))
+        self.TextColour = buttonTextColour
 
         self.command = command
 
-    def displayButton(self):
-        drawRectangle(self.buttonColour,self.buttonX,self.buttonY,self.buttonWidth,self.buttonHeight)
-        textDisplay(self.buttonTextSize,self.buttonText,self.buttonTextColour,self.buttonTextX,self.buttonTextY)
+    def display(self):
+        drawRectangle(self.Colour,self.X,self.Y,self.Width,self.Height)
+        textDisplay(self.TextSize,self.Text,self.TextColour,self.TextX,self.TextY)
 
-    def buttonHover(self):
-        drawRectangle(self.buttonHoverColour,self.buttonX,self.buttonY,self.buttonWidth,self.buttonHeight)
-        textDisplay(self.buttonTextSize,self.buttonText,self.buttonTextColour,self.buttonTextX,self.buttonTextY)
+    def hover(self):
+        drawRectangle(self.HoverColour,self.X,self.Y,self.Width,self.Height)
+        textDisplay(self.TextSize,self.Text,self.TextColour,self.TextX,self.TextY)
 
-    def buttonInteraction(self):
+    def interaction(self):
         self.command()
+#-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def runGame():
     print("Ran")
